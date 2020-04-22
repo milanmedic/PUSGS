@@ -54,7 +54,7 @@ export default {
 @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
   #home {
     margin: 10% 0 0 0;
-    height: 85%;
+    height: 90%;
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
@@ -65,6 +65,7 @@ export default {
     font-weight: bold;
     font-size: 3rem;
     text-align: center;
+    padding: 5% 0 0 0;
   }
   .home-search-services {
     width: 90%;

@@ -28,7 +28,6 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 button:active {
-  color: red;
   box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 2px;
 }
 </style>
