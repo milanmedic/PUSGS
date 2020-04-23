@@ -26,5 +26,17 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style scoped>
+div {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  padding: 0 2.5%;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5%;
+}
+div:last-of-type {
+  margin-bottom: 0;
+}
+</style>>

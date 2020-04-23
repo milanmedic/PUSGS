@@ -17,7 +17,7 @@
     <section class="home-register-section">
       <h3>Don't have an account?</h3>
       <router-link :to="{name: 'Register'}">
-        <BaseButton buttonClass="submit-button">Register</BaseButton>
+        <BaseButton type="submit" buttonClass="submit-button">Register</BaseButton>
       </router-link>
     </section>
   </div>
