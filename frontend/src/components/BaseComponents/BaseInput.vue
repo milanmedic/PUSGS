@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label v-if="label">{{label}}</label>
+    <label v-if="label">{{ label }}</label>
     <input :value="value" @input="updateValue" v-bind="$attrs" />
   </div>
 </template>
@@ -14,15 +14,15 @@ export default {
   props: {
     label: {
       type: String,
-      default: ""
+      default: "",
     },
-    value: [String, Number]
+    value: [String, Number],
   },
   methods: {
     updateValue(event) {
       this.$emit("input", event.target.value);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -34,9 +34,9 @@ div {
   padding: 0 2.5%;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 5%;
+  margin: 5% 0;
 }
-div:last-of-type {
+/* div:last-of-type {
   margin-bottom: 0;
-}
-</style>>
+} */</style
+>>

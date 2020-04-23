@@ -9,9 +9,9 @@ export default {
   inheritAttrs: false,
   props: {
     buttonClass: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
 };
 </script>
 
@@ -19,7 +19,7 @@ export default {
 button {
   outline: none;
 }
-.submit-button {
+.interaction-button {
   padding: 5% 15%;
   font-size: 1.2rem;
   background-color: #6e89eb;
@@ -29,14 +29,13 @@ button {
   box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 .reset-button {
-  padding: 5% 15%;
-  font-size: 1.2rem;
   background-color: #e24e42;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
+
+.submit-button {
+  background-color: #008f95;
+}
+
 button:active {
   box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 2px;
 }

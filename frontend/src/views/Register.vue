@@ -3,12 +3,24 @@
     <section id="registration-page-header">
       <h2>Register Account</h2>
     </section>
-    <BaseForm @submit.prevent="registerUser" @reset="reset" class="registration-form">
+    <BaseForm
+      @submit.prevent="registerUser"
+      @reset="reset"
+      class="registration-form"
+    >
       <template v-slot:formFields>
         <div class="form-input-fields">
           <BaseInput label="Email" type="email" v-model="formData.email" />
-          <BaseInput label="Password" type="password" v-model="formData.password" />
-          <BaseInput label="Confirm Password" type="password" v-model="formData.confirmPassword" />
+          <BaseInput
+            label="Password"
+            type="password"
+            v-model="formData.password"
+          />
+          <BaseInput
+            label="Confirm Password"
+            type="password"
+            v-model="formData.confirmPassword"
+          />
           <BaseInput label="Name" type="text" v-model="formData.name" />
           <BaseInput label="Username" type="text" v-model="formData.username" />
           <BaseInput label="Location" type="text" v-model="formData.location" />
@@ -18,14 +30,16 @@
         <div class="registration-form-buttons">
           <BaseButton
             type="submit"
-            buttonClass="submit-button"
+            buttonClass="interaction-button submit-button"
             id="registration-register-button"
-          >Register!</BaseButton>
+            >Register!</BaseButton
+          >
           <BaseButton
             type="reset"
-            buttonClass="reset-button"
+            buttonClass="interaction-button reset-button"
             id="registration-register-button"
-          >Reset</BaseButton>
+            >Reset</BaseButton
+          >
         </div>
       </template>
     </BaseForm>
@@ -46,8 +60,8 @@ export default {
         confirmPassword: "",
         email: "",
         username: "",
-        location: ""
-      }
+        location: "",
+      },
     };
   },
   methods: {
@@ -61,19 +75,19 @@ export default {
         confirmPassword: "",
         email: "",
         username: "",
-        location: ""
+        location: "",
       };
-    }
+    },
   },
   components: {
     BaseForm,
     BaseInput,
-    BaseButton
-  }
+    BaseButton,
+  },
 };
 </script>
 
-<style>
+<style scoped>
 #registration-page {
   position: relative;
   height: 90%;

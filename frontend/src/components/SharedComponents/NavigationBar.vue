@@ -2,16 +2,19 @@
   <nav id="navigation">
     <ul class="menu">
       <li class="logo">
-        <router-link :to="{name: 'Home'}">Logo</router-link>
+        <router-link :to="{ name: 'Home' }">Logo</router-link>
       </li>
       <li class="item" @click="toggleMenu">
-        <router-link :to="{name: 'Home'}">Home</router-link>
+        <router-link :to="{ name: 'Home' }">Home</router-link>
       </li>
       <li class="item" @click="toggleMenu">
-        <router-link :to="{name: 'About'}">About</router-link>
+        <router-link :to="{ name: 'About' }">About</router-link>
       </li>
       <li class="item" @click="toggleMenu">
-        <router-link :to="{name: 'Register'}">Register</router-link>
+        <router-link :to="{ name: 'Register' }">Register</router-link>
+      </li>
+      <li class="item" @click="toggleMenu">
+        <router-link :to="{ name: 'Login' }">Login</router-link>
       </li>
       <li class="toggle" id="menu-icon" @click="toggleMenu">
         <img src="@/assets/menu.svg" alt="hamburger icon" />
@@ -28,9 +31,9 @@ export default {
   methods: {
     toggleMenu(event) {
       let lis = document.querySelectorAll(".item");
-      lis.forEach(item => item.classList.toggle("active"));
-    }
-  }
+      lis.forEach((item) => item.classList.toggle("active"));
+    },
+  },
 };
 </script>
 
