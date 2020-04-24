@@ -138,3 +138,13 @@ html {
 * {
   font-family: "Fira Sans", "Roboto", sans-serif;
 }
+
+.input-error {
+  background-color: #e24e42;
+  align-self: flex-end;
+  border-radius: 5px;
+  width: 80%;
+  padding: 0.5%;
+  font-size: 0.8rem;
+  margin-bottom: 0.5%;
+}

@@ -6,11 +6,21 @@
     <BaseForm @submit.prevent="login" class="login-form">
       <template v-slot:formFields>
         <div id="login-form-fields">
-          <BaseInput label="Username" type="text" v-model="$v.loginData.username.$model" />
+          <BaseInput
+            label="Username"
+            type="text"
+            v-model="$v.loginData.username.$model"
+            @blur="$v.loginData.username.$touch()"
+          />
           <template v-if="$v.loginData.username.$dirty && $v.loginData.username.$invalid">
             <p class="input-error">Plese fill out the username field.</p>
           </template>
-          <BaseInput label="Password" type="password" v-model="$v.loginData.password.$model" />
+          <BaseInput
+            label="Password"
+            type="password"
+            v-model="$v.loginData.password.$model"
+            @blur="$v.loginData.password.$touch()"
+          />
           <template v-if="$v.loginData.password.$dirty && $v.loginData.password.$invalid">
             <p class="input-error">Plese fill out the pasword field.</p>
           </template>
@@ -57,9 +67,6 @@ export default {
     }
   },
   computed: {
-    isDisabled() {
-      return !this.loginData.username;
-    },
     buttonClasses() {
       if (this.$v.$invalid) {
         return "submit-button interaction-button invalid-input";
@@ -111,13 +118,5 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   width: 85%;
-}
-
-.input-error {
-  background-color: #e24e42;
-  align-self: flex-end;
-  border-radius: 5px;
-  width: 80%;
-  padding: 1%;
 }
 </style>
