@@ -31,6 +31,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Login.vue"),
   },
+  {
+    path: "/profile/username", //it will dynamic when we create an API
+    name: "Profile",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/UserProfile.vue"),
+  },
 ];
 
 const router = new VueRouter({
