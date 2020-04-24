@@ -45,4 +45,8 @@ button {
 button:active {
   box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 2px;
 }
+
+.edit-button {
+  padding: 2.5% 5%;
+}
 </style>

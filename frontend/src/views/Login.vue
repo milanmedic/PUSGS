@@ -118,5 +118,6 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   width: 85%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 </style>

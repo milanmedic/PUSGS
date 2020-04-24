@@ -220,6 +220,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .registration-form-buttons {

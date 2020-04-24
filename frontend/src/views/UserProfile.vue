@@ -52,9 +52,9 @@ export default {
   position: relative;
   height: 90%;
   width: 95%;
-  margin: 10% 2.5% 0 2.5%;
+  margin: 5% 2.5% 0 2.5%;
   display: grid;
-  grid-template-rows: 2.5fr 0.5fr 3fr;
-  grid-gap: 2.5%;
+  grid-template-rows: 30% 10% 50%;
+  grid-gap: 5%;
 }
 </style>

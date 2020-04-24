@@ -50,7 +50,7 @@ const routes = [
         name: "Friends List",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/FriendsList.vue"
+            /* webpackChunkName: "about" */ "@/components/UserProfileComponents/FriendsList.vue"
           ),
       },
       {
@@ -58,7 +58,7 @@ const routes = [
         name: "Find Friends",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/FindFriends.vue"
+            /* webpackChunkName: "about" */ "@/components/UserProfileComponents/FindFriends.vue"
           ),
       },
     ],

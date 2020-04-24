@@ -26,6 +26,7 @@ export default {
   height: 95%;
   padding: 2.5%;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 #tab-navigation-items {

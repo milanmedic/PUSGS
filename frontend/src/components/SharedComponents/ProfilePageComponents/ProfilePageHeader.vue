@@ -34,13 +34,14 @@ export default {
 .profile-page-header {
   width: 95%;
   padding: 2.5%;
-  height: 95%;
+  height: 97.5%;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 2fr;
   grid-gap: 5%;
   background-color: #6e89eb;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .profile-page-header figure {
