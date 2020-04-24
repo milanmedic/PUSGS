@@ -16,6 +16,7 @@
 import BaseProfile from "@/components/BaseComponents/BaseProfile.vue";
 import ProfilePageHeader from "@/components/SharedComponents/ProfilePageComponents/ProfilePageHeader.vue";
 export default {
+  name: "UserProfile",
   components: {
     BaseProfile,
     ProfilePageHeader
