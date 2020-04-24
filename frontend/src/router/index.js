@@ -36,6 +36,32 @@ const routes = [
     name: "Profile",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/UserProfile.vue"),
+    children: [
+      {
+        path: "editprofile",
+        name: "Edit Profile",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/EditProfile.vue"
+          ),
+      },
+      {
+        path: "friendsList",
+        name: "Friends List",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/FriendsList.vue"
+          ),
+      },
+      {
+        path: "findfriends",
+        name: "Find Friends",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/FindFriends.vue"
+          ),
+      },
+    ],
   },
 ];
 

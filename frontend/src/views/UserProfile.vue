@@ -4,10 +4,10 @@
       <ProfilePageHeader />
     </template>
     <template v-slot:tabMenu>
-      <div>Tab Menu</div>
+      <ProfileTabsNav :tabs="tabs" />
     </template>
     <template v-slot:tabList>
-      <div>Tab List</div>
+      <router-view :key="$route.path"></router-view>
     </template>
   </BaseProfile>
 </template>
@@ -15,11 +15,34 @@
 <script>
 import BaseProfile from "@/components/BaseComponents/BaseProfile.vue";
 import ProfilePageHeader from "@/components/SharedComponents/ProfilePageComponents/ProfilePageHeader.vue";
+import ProfileTabsNav from "@/components/SharedComponents/ProfilePageComponents/ProfileTabsNav.vue";
 export default {
   name: "UserProfile",
+  data() {
+    return {
+      tabs: [
+        {
+          id: 1,
+          routeName: "EditProfile",
+          title: "Edit Profile"
+        },
+        {
+          id: 2,
+          routeName: "FriendsList",
+          title: "Friends List"
+        },
+        {
+          id: 3,
+          routeName: "FindFriends",
+          title: "Find Friends"
+        }
+      ]
+    };
+  },
   components: {
     BaseProfile,
-    ProfilePageHeader
+    ProfilePageHeader,
+    ProfileTabsNav
   }
 };
 </script>
@@ -31,7 +54,7 @@ export default {
   width: 95%;
   margin: 10% 2.5% 0 2.5%;
   display: grid;
-  grid-template-rows: 2fr 1fr 3fr;
-  grid-gap: 5%;
+  grid-template-rows: 2.5fr 0.5fr 3fr;
+  grid-gap: 2.5%;
 }
 </style>
