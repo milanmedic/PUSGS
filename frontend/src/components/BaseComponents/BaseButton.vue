@@ -9,9 +9,9 @@ export default {
   inheritAttrs: false,
   props: {
     buttonClass: {
-      type: String,
-    },
-  },
+      type: String
+    }
+  }
 };
 </script>
 
@@ -34,6 +34,12 @@ button {
 
 .submit-button {
   background-color: #008f95;
+}
+
+.invalid-input,
+.invalid-input:active {
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: none;
 }
 
 button:active {

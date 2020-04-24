@@ -6,22 +6,18 @@
     <BaseForm @submit.prevent="login" class="login-form">
       <template v-slot:formFields>
         <div id="login-form-fields">
-          <BaseInput
-            label="Username"
-            type="text"
-            v-model="loginData.username"
-          />
-          <BaseInput
-            label="Password"
-            type="password"
-            v-model="loginData.password"
-          />
+          <BaseInput label="Username" type="text" v-model="$v.loginData.username.$model" />
+          <template v-if="$v.loginData.username.$dirty && $v.loginData.username.$invalid">
+            <p class="input-error">Plese fill out the username field.</p>
+          </template>
+          <BaseInput label="Password" type="password" v-model="$v.loginData.password.$model" />
+          <template v-if="$v.loginData.password.$dirty && $v.loginData.password.$invalid">
+            <p class="input-error">Plese fill out the pasword field.</p>
+          </template>
         </div>
       </template>
       <template v-slot:formButtons>
-        <BaseButton buttonClass="submit-button interaction-button" type="submit"
-          >Login</BaseButton
-        >
+        <BaseButton :disabled="$v.$invalid" :buttonClass="buttonClasses" type="submit">Login</BaseButton>
       </template>
     </BaseForm>
     <RegisterBar />
@@ -33,27 +29,50 @@ import BaseForm from "@/components/BaseComponents/BaseForm.vue";
 import BaseInput from "@/components/BaseComponents/BaseInput.vue";
 import BaseButton from "@/components/BaseComponents/BaseButton.vue";
 import RegisterBar from "@/components/SharedComponents/RegisterBar.vue";
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "Login",
   data() {
     return {
       loginData: {
         username: "",
-        password: "",
-      },
+        password: ""
+      }
     };
+  },
+  validations: {
+    loginData: {
+      username: {
+        required
+      },
+      password: {
+        required
+      }
+    }
   },
   methods: {
     login() {
       console.log("Login");
+    }
+  },
+  computed: {
+    isDisabled() {
+      return !this.loginData.username;
     },
+    buttonClasses() {
+      if (this.$v.$invalid) {
+        return "submit-button interaction-button invalid-input";
+      }
+      return "submit-button interaction-button";
+    }
   },
   components: {
     BaseForm,
     BaseInput,
     BaseButton,
-    RegisterBar,
-  },
+    RegisterBar
+  }
 };
 </script>
 
@@ -92,5 +111,13 @@ export default {
   flex-direction: column;
   justify-content: space-evenly;
   width: 85%;
+}
+
+.input-error {
+  background-color: #e24e42;
+  align-self: flex-end;
+  border-radius: 5px;
+  width: 80%;
+  padding: 1%;
 }
 </style>

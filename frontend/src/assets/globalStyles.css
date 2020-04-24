@@ -132,5 +132,9 @@ table {
 
 html {
   font-size: 16px;
-  font-family: "Roboto", "Fira Sans", sans-serif;
+  font-family: "Fira Sans", "Roboto", sans-serif;
+}
+
+* {
+  font-family: "Fira Sans", "Roboto", sans-serif;
 }
