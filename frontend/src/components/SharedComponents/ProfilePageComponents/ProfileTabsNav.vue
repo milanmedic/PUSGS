@@ -15,6 +15,12 @@ export default {
       type: Array,
       required: true
     }
+  },
+  method: {
+    isActive() {
+      let bla = this.$router.path;
+      console.log(bla);
+    }
   }
 };
 </script>
@@ -40,8 +46,8 @@ a {
   padding: 2.5%;
 }
 
-a:visited {
-  color: none;
+.currentlyActive {
+  background-color: red;
 }
 
 .tab-navigation-item {

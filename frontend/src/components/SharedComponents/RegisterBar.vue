@@ -2,9 +2,7 @@
   <section class="home-register-section">
     <h3>Don't have an account?</h3>
     <router-link :to="{ name: 'Register' }">
-      <BaseButton type="submit" buttonClass="interaction-button"
-        >Register</BaseButton
-      >
+      <BaseButton type="submit" buttonClass="interaction-button">Register</BaseButton>
     </router-link>
   </section>
 </template>
@@ -13,8 +11,8 @@
 import BaseButton from "@/components/BaseComponents/BaseButton.vue";
 export default {
   components: {
-    BaseButton,
-  },
+    BaseButton
+  }
 };
 </script>
 
@@ -34,6 +32,6 @@ export default {
 
 .home-register-section a {
   text-align: center;
-  width: 100%;
+  width: 95%;
 }
 </style>

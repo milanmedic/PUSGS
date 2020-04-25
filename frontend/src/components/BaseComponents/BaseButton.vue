@@ -47,6 +47,11 @@ button:active {
 }
 
 .edit-button {
-  padding: 2.5% 5%;
+  width: 15%;
+  height: 80%;
+  padding: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

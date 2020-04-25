@@ -1,11 +1,13 @@
 <template>
   <div class="edit-profile-component">
-    <EditItem
-      v-for="item in items"
-      :key="item.title"
-      :optionName="item.title"
-      :optionValue="item.value"
-    />
+    <div class="options-list">
+      <EditItem
+        v-for="item in items"
+        :key="item.title"
+        :optionName="item.title"
+        :optionValue="item.value"
+      />
+    </div>
   </div>
 </template>
 
@@ -49,5 +51,19 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
+  height: 95%;
+  overflow-x: scroll;
+  width: 95%;
+}
+
+.options-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 2.5%;
 }
 </style>

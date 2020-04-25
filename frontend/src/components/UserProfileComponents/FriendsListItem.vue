@@ -20,9 +20,8 @@ export default {
 
 <style>
 .friends-list-item {
-  width: 90%;
+  width: 100%;
   background-color: white;
-  padding: 2.5%;
   display: flex;
   justify-content: space-around;
   align-items: center;

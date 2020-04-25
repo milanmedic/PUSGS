@@ -1,11 +1,11 @@
 <template>
   <div class="friends-list-component">
-    <FriendsListItem v-for="item in friends" :key="item" :friendName="item" />
+    <ProfileList :friends="friends" />
   </div>
 </template>
 
 <script>
-import FriendsListItem from "@/components/UserProfileComponents/FriendsListItem.vue";
+import ProfileList from "@/components/UserProfileComponents/ProfileList.vue";
 export default {
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
     };
   },
   components: {
-    FriendsListItem
+    ProfileList
   }
 };
 </script>
@@ -39,5 +39,6 @@ export default {
   align-items: center;
   overflow-y: scroll;
   padding: 2.5%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 </style>

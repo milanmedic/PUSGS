@@ -2,7 +2,9 @@
   <div class="edit-profile-item">
     <p class="option-name">{{optionName}}</p>
     <p class="option-value">{{optionValue}}</p>
-    <BaseButton buttonClass="interaction-button edit-button">Edit</BaseButton>
+    <BaseButton buttonClass="interaction-button edit-button">
+      <img src="@/assets/Edit.svg" alt="Edit Button" />
+    </BaseButton>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default {
 <style>
 .edit-profile-item {
   width: 95%;
-  padding: 0% 2.5%;
+  padding: 1% 2.5%;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -38,7 +40,6 @@ export default {
   border-radius: 5px;
   height: 15%;
   max-height: 15%;
-  min-height: 5%;
   margin-bottom: 2%;
   font-size: 0.9rem;
 }
