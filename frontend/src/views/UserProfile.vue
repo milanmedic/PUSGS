@@ -54,7 +54,7 @@ export default {
   width: 95%;
   margin: 5% 2.5% 0 2.5%;
   display: grid;
-  grid-template-rows: 30% 10% 50%;
+  grid-template-rows: 30% 5% 55%;
   grid-gap: 5%;
 }
 </style>

@@ -101,6 +101,9 @@ a:hover {
   order: 3;
   display: none;
 }
+.item:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
 .item.active {
   display: block;
 }
