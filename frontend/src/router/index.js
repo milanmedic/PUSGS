@@ -11,38 +11,29 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
     path: "/register",
     name: "Register",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
   },
   {
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
   },
   {
     path: "/profile/username", //it will dynamic when we create an API
     name: "Profile",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/UserProfile.vue"),
+      import(/* webpackChunkName: "userProfile" */ "../views/UserProfile.vue"),
     children: [
       {
         path: "editprofile",
         name: "Edit Profile",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "@/components/SharedComponents/ProfilePageComponents/EditProfile.vue"
+            /* webpackChunkName: "editProfile" */ "@/components/SharedComponents/ProfilePageComponents/EditProfile.vue"
           ),
       },
       {
@@ -50,7 +41,7 @@ const routes = [
         name: "Friends List",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "@/components/UserProfileComponents/FriendsList.vue"
+            /* webpackChunkName: "friendsList" */ "@/components/UserProfileComponents/FriendsList.vue"
           ),
       },
       {
@@ -58,14 +49,25 @@ const routes = [
         name: "Find Friends",
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "@/components/UserProfileComponents/FindFriends.vue"
+            /* webpackChunkName: "findFriends" */ "@/components/UserProfileComponents/FindFriends.vue"
           ),
       },
     ],
   },
+  {
+    path: "/404",
+    alias: "*",
+    name: "NotFound",
+    component: () =>
+      import(
+        /* webpackChunkName: "notFound" */
+        "@/views/NotFound.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
 });
 
