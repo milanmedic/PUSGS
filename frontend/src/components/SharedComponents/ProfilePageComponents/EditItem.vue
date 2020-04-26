@@ -42,6 +42,7 @@ export default {
   max-height: 15%;
   margin-bottom: 2%;
   font-size: 0.9rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .option-value {

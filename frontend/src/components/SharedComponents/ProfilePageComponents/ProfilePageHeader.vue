@@ -63,6 +63,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   padding-left: 2.5%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .basic-information > h2 {
@@ -80,6 +81,7 @@ export default {
   grid-row: 2;
   background-color: white;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .profile-description > p {

@@ -38,6 +38,12 @@ export default {
 </script>
 
 <style scoped>
+.item > a {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
 #navigation {
   height: 5%;
   width: 100%;

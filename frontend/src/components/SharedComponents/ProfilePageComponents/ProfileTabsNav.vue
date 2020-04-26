@@ -10,22 +10,27 @@
 
 <script>
 export default {
+  data() {
+    return {
+      tabClass: ""
+    };
+  },
   props: {
     tabs: {
       type: Array,
       required: true
     }
-  },
-  method: {
-    isActive() {
-      let bla = this.$router.path;
-      console.log(bla);
-    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.router-link-exact-active {
+  color: white;
+  background-color: #6e89eb;
+  box-shadow: none;
+}
+
 #profile-tabs-navigation {
   background-color: #6e89eb;
   width: 95%;
@@ -43,7 +48,11 @@ export default {
 }
 a {
   text-decoration: none;
+  background-color: white;
   padding: 2.5%;
+  color: black;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 
 .currentlyActive {
@@ -51,9 +60,6 @@ a {
 }
 
 .tab-navigation-item {
-  background-color: white;
-  border-radius: 5px;
-  height: 100%;
   text-align: center;
   display: flex;
   align-items: center;
