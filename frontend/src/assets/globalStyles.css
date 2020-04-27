@@ -148,3 +148,10 @@ html {
   font-size: 0.8rem;
   margin-bottom: 0.5%;
 }
+
+.router-link-exact-active,
+.router-link-active,
+a {
+  color: black;
+  text-decoration: none;
+}

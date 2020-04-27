@@ -63,6 +63,22 @@ const routes = [
     ],
   },
   {
+    path: "/services/:serviceType",
+    name: "Services List",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "serviceslist" */ "../views/ListOfServices.vue"
+      ),
+  },
+  {
+    path: "/services/:serviceType/:serviceId",
+    name: "Service Item",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "serviceItem" */ "../views/ServiceItem.vue"),
+  },
+  {
     path: "/404",
     alias: "*",
     name: "NotFound",

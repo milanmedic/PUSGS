@@ -10,9 +10,7 @@
           <BaseSelect v-model="selectedOption" :options="options" />
         </template>
         <template v-slot:formButtons>
-          <BaseButton type="submit" buttonClass="interaction-button"
-            >Go!</BaseButton
-          >
+          <BaseButton type="submit" buttonClass="interaction-button">Go!</BaseButton>
         </template>
       </BaseForm>
     </section>
@@ -32,20 +30,23 @@ export default {
   data() {
     return {
       selectedOption: "Flight Services",
-      options: ["Flight Services", "Rent-A-Car Services"],
+      options: ["Flight Services", "Rent-A-Car Services"]
     };
   },
   methods: {
     helloWorld() {
-      console.log("hello World");
-    },
+      this.$router.push({
+        name: "Services List",
+        params: { serviceType: this.selectedOption }
+      });
+    }
   },
   components: {
     BaseForm,
     BaseSelect,
     BaseButton,
-    RegisterBar,
-  },
+    RegisterBar
+  }
 };
 </script>
 

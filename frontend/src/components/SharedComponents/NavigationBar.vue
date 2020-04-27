@@ -47,6 +47,7 @@ export default {
 #navigation {
   height: 5%;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 /* Basic styling */
 * {
@@ -94,6 +95,7 @@ a:hover {
   z-index: 100;
   background: #6e89eb;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 8px;
 }
 .toggle {
   order: 1;
