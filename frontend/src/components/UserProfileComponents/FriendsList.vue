@@ -1,6 +1,6 @@
 <template>
   <div class="friends-list-component">
-    <ProfileList :friends="friends" />
+    <ProfileList :friends="friends" type="accepted-request" />
   </div>
 </template>
 
@@ -15,11 +15,10 @@ export default {
         "Kosovo1244",
         "Spajdermen",
         "Betmen",
-        "PajaPatak",
+        "Paja Patak",
         "Gusar",
         "Seselj",
-        "Tita",
-        "Vila"
+        "Tita"
       ]
     };
   },

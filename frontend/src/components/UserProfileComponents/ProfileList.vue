@@ -1,6 +1,6 @@
 <template>
   <div class="profile-list">
-    <FriendsListItem v-for="item in friends" :key="item" :friendName="item" />
+    <FriendsListItem v-for="item in friends" :key="item" :friendName="item" :type="type" />
   </div>
 </template>
 
@@ -10,6 +10,10 @@ export default {
   props: {
     friends: {
       type: Array,
+      required: true
+    },
+    type: {
+      type: String,
       required: true
     }
   },

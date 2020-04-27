@@ -54,4 +54,22 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+
+.action-button {
+  width: 40%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 2.5%;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+  border-radius: 50%;
+  height: 90%;
+}
+
+.action-button:active {
+  box-shadow: none;
+}
 </style>
