@@ -63,5 +63,7 @@ a {
   text-align: center;
   display: flex;
   align-items: center;
+  max-width: 20%;
+  font-size: 90%;
 }
 </style>

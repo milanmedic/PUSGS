@@ -35,6 +35,11 @@ export default {
           id: 3,
           routeName: "FindFriends",
           title: "Find Friends"
+        },
+        {
+          id: 4,
+          routeName: "PendingRequests",
+          title: "Pending Requests"
         }
       ]
     };

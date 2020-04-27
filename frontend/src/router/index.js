@@ -52,6 +52,14 @@ const routes = [
             /* webpackChunkName: "findFriends" */ "@/components/UserProfileComponents/FindFriends.vue"
           ),
       },
+      {
+        path: "pendingrequests",
+        name: "Pending Requests",
+        component: () =>
+          import(
+            /* webpackChunkName: "pendingRequests" */ "@/components/UserProfileComponents/PendingRequests.vue"
+          ),
+      },
     ],
   },
   {
