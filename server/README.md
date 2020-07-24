@@ -37,9 +37,8 @@ The Services are for business logic
 ### Superadmin Routes
     * /add-company
     * /delete-company
-## To-Do
-
-API Functionalities:
+# To-Do
+## API Functionalities:
  * Unregistered Users
     * Lookup flight information, free seats
     * Lookup rent-a-car information
@@ -50,8 +49,8 @@ API Functionalities:
     * Add/Remove Friends
     * Reserve/Decline Airplane Tickets
     * Give a grade to the Air company
-    * Reserve/Decline Rent-a-car
-    * Give a grade to the Rent-a-car company
+    * (later) Reserve/Decline Rent-a-car
+    * (later) Give a grade to the Rent-a-car company
  * Admins
     * Airplane Admins
         * Define destinations
@@ -61,7 +60,7 @@ API Functionalities:
         * Get user ratings of their company
         * Get Income Reports
         * Edit Airplane Company Page
-    * Rent - a - car Admins
+    * (later) Rent - a - car Admins
         * Define available vehlices
         * Adjust pricing
         * Get reports of free and taken vehlices for a given period
@@ -70,8 +69,8 @@ API Functionalities:
         * Edit Airplane Company Page
     * Super Admin
         * Register a new Rent-a-Car or Aviation company
-
 ## Finalization
+- Write global error handler
 - Setup .env environment variable loading
 
 ## Applying Migrations
