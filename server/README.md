@@ -73,3 +73,6 @@ API Functionalities:
 
 ## Finalization
 - Setup .env environment variable loading
+
+## Applying Migrations
+npx sequelize-cli db:migrate --url 'mysql://user:pass@localhost/dbname' --migrations-path "/home/mmedic/Programming/PUSGS/server/src/migrations"
