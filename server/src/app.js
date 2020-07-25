@@ -3,7 +3,7 @@ import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import cors from 'cors'
 import {PORT} from './config/dev'
-import { sequelize } from './services/utilities/database'
+import { setup } from './services/utilities/database'
 import {login, register, protectRoute} from './controllers/authentication'
 
 export const app = express()
@@ -24,7 +24,9 @@ app.get('/', async(req, res) => {
 export const start = () => {
     app.listen(PORT, async() => {
         try {
-            await sequelize.authenticate()
+            let bla = await setup()
+            console.log(bla)
+            //await sequelize.authenticate()
             console.log('Connection established successfully.')
             console.log(`Server listening on port ${PORT}`)
             //await sequelize.sync({force: true}) //if we want to work without migrations

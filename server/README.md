@@ -71,6 +71,7 @@ The Services are for business logic
         * Register a new Rent-a-Car or Aviation company
 ## Finalization
 - Write global error handler
+- Try to set a check if database exists, if not, create it
 - Setup .env environment variable loading
 
 ## Applying Migrations
