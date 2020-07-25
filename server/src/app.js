@@ -24,9 +24,8 @@ app.get('/', async(req, res) => {
 export const start = () => {
     app.listen(PORT, async() => {
         try {
-            let bla = await setup()
-            console.log(bla)
-            //await sequelize.authenticate()
+            let sequelize = await setup()
+            await sequelize.authenticate()
             console.log('Connection established successfully.')
             console.log(`Server listening on port ${PORT}`)
             //await sequelize.sync({force: true}) //if we want to work without migrations
