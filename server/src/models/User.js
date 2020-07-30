@@ -1,5 +1,7 @@
 import {Sequelize, DataTypes} from 'sequelize'
 import {sequelize} from '../services/utilities/database/index'
+import {Ticket} from './Ticket'
+import { Friendship } from './Friendship'
 
 export const User = sequelize.define('User', {
     name: {
@@ -43,3 +45,5 @@ export const User = sequelize.define('User', {
 
 //one user has many friendships
 //one user has many tickets
+User.hasMany(Ticket, {foreignKey: 'userUsername'})
+User.belongsToMany(User, {as: 'Friends', through: Friendship, uniqueKey: 'custom_key'})

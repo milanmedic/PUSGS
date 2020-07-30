@@ -1,5 +1,6 @@
 import {Sequelize, DataTypes} from 'sequelize'
 import {sequelize} from '../services/utilities/database'
+import {Flight} from './Flight'
 
 export const Destination = sequelize.define('Destination', {
     id: {
@@ -21,3 +22,4 @@ export const Destination = sequelize.define('Destination', {
 })
 
 //one destination has many flights
+Destination.hasMany(Flight, {foreignKey: 'destinationId'})

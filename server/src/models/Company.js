@@ -1,5 +1,6 @@
 import {Sequelize, DataTypes} from 'sequelize'
 import {sequelize} from '../services/utilities/database'
+import {Destination} from './Destination'
 
 export const Company = sequelize.define('Company', {
     id: {
@@ -44,3 +45,4 @@ export const Company = sequelize.define('Company', {
 })
 
 //one company has many destinations
+Company.hasMany(Destination, {foreignKey: 'companyId'})

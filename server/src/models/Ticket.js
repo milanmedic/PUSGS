@@ -1,5 +1,7 @@
 import {Sequelize, DataTypes} from 'sequelize'
 import {sequelize} from '../services/utilities/database'
+// import {User} from './User'
+// import {Flight} from './Flight'
 
 export const Ticket = sequelize.define('Ticket', {
     //foreign key1 = passenger username
