@@ -1,37 +1,37 @@
 import {Sequelize, DataTypes} from 'sequelize'
 import {sequelize} from '../services/utilities/database'
 
-export const User = sequelize.define('User', {
+export const Company = sequelize.define('Company', {
+    id: {
+        type: DataTypes.UUIDV4,
+        allowNull: false
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    surname: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
-        unique: true
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
     },
     password: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    location: {
+    address: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
-    age: {
+    rating: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        default: 0
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        default: ""
+    },
+    income: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false,
+        default: 0
     },
     createdAt: {
         type: Sequelize.DATE
@@ -41,5 +41,4 @@ export const User = sequelize.define('User', {
     },
 })
 
-//one user has many friendships
-//one user has many tickets
+//one company has many destinations
