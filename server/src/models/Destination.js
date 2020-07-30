@@ -3,7 +3,9 @@ import {sequelize} from '../services/utilities/database'
 
 export const Destination = sequelize.define('Destination', {
     id: {
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
         allowNull: false
     },
     name: {

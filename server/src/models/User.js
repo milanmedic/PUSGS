@@ -1,5 +1,5 @@
 import {Sequelize, DataTypes} from 'sequelize'
-import {sequelize} from '../services/utilities/database'
+import {sequelize} from '../services/utilities/database/index'
 
 export const User = sequelize.define('User', {
     name: {

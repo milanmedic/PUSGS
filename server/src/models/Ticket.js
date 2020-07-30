@@ -5,12 +5,14 @@ export const Ticket = sequelize.define('Ticket', {
     //foreign key1 = passenger username
     //foreign key2 = company id
     id: {
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
         allowNull: false
     },
     destination: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     price: {
         type: DataTypes.FLOAT,
