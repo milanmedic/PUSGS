@@ -1,7 +1,5 @@
-import {Sequelize, DataTypes} from 'sequelize'
-import {sequelize} from '../services/utilities/database'
-// import {User} from './User'
-// import {Flight} from './Flight'
+import { Sequelize, DataTypes } from 'sequelize'
+import { sequelize } from '../services/utilities/database'
 
 export const Ticket = sequelize.define('Ticket', {
     //foreign key1 = passenger username
@@ -10,7 +8,7 @@ export const Ticket = sequelize.define('Ticket', {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
     },
     destination: {
         type: DataTypes.STRING,
@@ -18,12 +16,12 @@ export const Ticket = sequelize.define('Ticket', {
     },
     price: {
         type: DataTypes.FLOAT,
-        allowNull: false
+        allowNull: false,
     },
     createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
     },
     updatedAt: {
-      type: Sequelize.DATE
+        type: Sequelize.DATE,
     },
 })

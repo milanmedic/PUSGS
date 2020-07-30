@@ -1,12 +1,10 @@
-import {Router} from 'express'
+import { Router } from 'express'
 
 const router = Router()
 
-router.route('/:id')
-    .get() //return all user info
+router.route('/:id').get() //return all user info
 
-router.route('/:id/edit')
-    .put() //edit user info
+router.route('/:id/edit').put() //edit user info
 
 //find friends
 //add friend
