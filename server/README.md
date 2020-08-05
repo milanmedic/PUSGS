@@ -95,3 +95,7 @@ The Services are for business logic
 ## Applying Migrations
 
 npx sequelize-cli db:migrate --url 'mysql://user:pass@localhost/dbname' --migrations-path "/home/mmedic/Programming/PUSGS/server/src/migrations"
+
+## Known Bugs
+
+    * checkIfUserExists returns null on first try even though user already exists in DB. The second time around it returns if the value actually exists (HAPPENS BECAUSE SYNC DROPS THE WHOLE TABLE IF IT EXISTS)

@@ -1,20 +1,44 @@
 import {
-    signup,
-    signin,
-    protect,
-} from '../../services/utilities/authentication'
+    validateEmail,
+    validatePassword,
+} from '../../services/utilities/validations'
+import { checkIfExists, createUser } from '../../services/userService'
+import passport from 'passport'
+import { Strategy as localStrategy } from 'passport-local'
 
-export const login = (req, res) => {
-    console.log('Login Route')
-    return res.send('End')
-}
+// Passport middleware for handling user registration
+passport.use(
+    'signup',
+    new localStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true,
+        },
+        async (req, email, password, done) => {
+            let user = {}
+            try {
+                if (validateEmail(email) && validatePassword(password)) {
+                    const exists = await checkIfExists(req.body.username)
+                    if (!exists) {
+                        user = await createUser(req.body)
+                    } else {
+                        throw new Error('User already exists')
+                    }
+                } else {
+                    throw new Error('Credentials validation error')
+                }
+                return done(null, user)
+            } catch (err) {
+                done(err)
+            }
+        }
+    )
+)
 
-export const register = (req, res) => {
-    console.log('Register Route')
-    return res.send('End')
-}
-
-export const protectRoute = (req, res, next) => {
-    //need next only if everything is ok
-    return res.status(401).end()
+export const register = async (req, res, next) => {
+    return res.json({
+        message: 'Signup successful',
+        user: req.user,
+    })
 }
