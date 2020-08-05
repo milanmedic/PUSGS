@@ -6,6 +6,7 @@ const connect = () => {
     const instance = new Sequelize(DATABASE, DB_USERNAME, DB_PASS, {
         host: DB_HOST,
         dialect: 'mysql',
+        logging: false,
     })
     return instance
 }

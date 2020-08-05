@@ -1,5 +1,5 @@
-import { SECRET } from '../../../config/dev'
+import bcrypt from 'bcrypt'
 
-export function signin() {}
-export function signup() {}
-export function protect() {}
+export async function hashPassword(password) {
+    return await bcrypt.hash(password, 13)
+}
