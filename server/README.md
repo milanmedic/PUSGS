@@ -51,9 +51,11 @@ The Services are for business logic
 ## Miscalenious
 
 -   Add a logger (Morgan)
--   Write global error handler
+-   Write global error handler (404 for not found, 500 for critical errors, 400 for bad request (something went wrong, existing user, etc))
 -   (!!!DONE!!!) Try to set a check if database exists, if not, create it
 -   Setup .env environment variable loading
+-   Add Subdomain for admins
+-   Add Request Validators (non-existing email, good field values, etc...)
 
 ## API Functionalities:
 

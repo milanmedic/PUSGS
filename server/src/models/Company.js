@@ -46,6 +46,11 @@ export const Company = sequelize.define('Company', {
     updatedAt: {
         type: Sequelize.DATE,
     },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        default: 'company',
+    },
 })
 
 //one company has many destinations

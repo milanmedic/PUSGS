@@ -41,6 +41,11 @@ export const User = sequelize.define('User', {
     updatedAt: {
         type: Sequelize.DATE,
     },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        default: 'user',
+    },
 })
 
 //one user has many friendships
