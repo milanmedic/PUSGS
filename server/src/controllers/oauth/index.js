@@ -3,31 +3,56 @@ import fetch from 'node-fetch'
 import { checkIfExists } from '../../services/userService'
 import { EndpointError } from '../../models/Error'
 import { newToken } from '../../services/utilities/authentication'
+import axios from 'axios'
 
 async function getAccessToken(code, client_id, client_secret) {
-    const request = await fetch('https://github.com/login/oauth/access_token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            client_id,
-            client_secret,
-            code,
-        }),
-    })
-    const text = await request.text()
-    //response is a text string containint keypairs with = and &, not JSON, that's why we use URLSearchParams to parse it
-    const params = new URLSearchParams(text)
-    return params.get('access_token')
+    try {
+        const request = await axios.post(
+            'https://github.com/login/oauth/access_token',
+            {
+                client_id,
+                client_secret,
+                code,
+            }
+        )
+        const params = new URLSearchParams(request.data)
+        return params.get('access_token')
+    } catch (err) {
+        console.error(err)
+    }
+    // const request = await fetch('https://github.com/login/oauth/access_token', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         client_id,
+    //         client_secret,
+    //         code,
+    //     }),
+    // })
+    // const text = await request.text()
+    // //response is a text string containint keypairs with = and &, not JSON, that's why we use URLSearchParams to parse it
+    // const params = new URLSearchParams(text)
+    // return params.get('access_token')
 }
 async function fetchGitHubUser(token) {
-    const request = await fetch('https://api.github.com/user', {
-        headers: {
-            Authorization: 'token ' + token,
-        },
-    })
-    return await request.json()
+    try {
+        const request = await axios.get('https://api.github.com/user', {
+            headers: {
+                Authorization: 'token ' + token,
+            },
+        })
+        return request.data
+    } catch (err) {
+        console.error(err)
+    }
+    // const request = await fetch('https://api.github.com/user', {
+    //     headers: {
+    //         Authorization: 'token ' + token,
+    //     },
+    // })
+    // return await request.json()
 }
 export async function sendGitHubOAuthRequest(req, res) {
     const redirectURI = 'http://localhost:3000/login/github/callback'
@@ -45,6 +70,7 @@ export async function handleGitHubOAuthCallback(req, res, next) {
     )
     //get user
     const user = await fetchGitHubUser(accessToken)
+
     //check if user exists
     const exists = await checkIfExists(user.email)
     if (!exists) {
