@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken'
 import {
     checkPassword,
     newToken,
+    verifyToken,
 } from '../../services/utilities/authentication'
 
 export const register = async (req, res, next) => {
@@ -43,10 +44,11 @@ export const register = async (req, res, next) => {
     }
 }
 export const login = async (req, res, next) => {
+    let user = undefined
     if (req.body.email && req.body.password) {
         //find a user with a corresponding email
         try {
-            const user = await getUser(req.body.email)
+            user = await getUser(req.body.email)
             if (!user) {
                 return next(
                     new EndpointError(
@@ -61,7 +63,7 @@ export const login = async (req, res, next) => {
                 return next(new EndpointError("Passwords don't match", 401))
             }
             //create jwt token
-            const token = newToken(req.body)
+            const token = newToken(user)
             if (!token) {
                 return next(
                     new EndpointError('Error while creating access token!', 500)
@@ -76,4 +78,48 @@ export const login = async (req, res, next) => {
         next(new EndpointError("Email &/or Password don't exist", 400))
     }
 }
-export const protect = async (req, res, next) => {}
+
+export const protectUser = (req, res, next) => {
+    req.allowedRole = 'user'
+    next()
+}
+// setting required role for
+export const protectCompanyAdmin = (req, res, next) => {
+    req.allowedRole = 'company'
+    next()
+}
+
+export const protect = async (req, res, next) => {
+    const bearer = req.headers.authorization
+    if (!bearer || !bearer.startsWith('Bearer ')) {
+        return next(new EndpointError('Bearer token missing!', 401))
+    }
+
+    const token = bearer.split('Bearer ')[1].trim()
+    let payload = undefined
+    try {
+        payload = await verifyToken(token)
+    } catch (err) {
+        return next(err)
+    }
+    if (payload.role != req.allowedRole) {
+        return next(new EndpointError('You are not authorized!', 401))
+    }
+    if (req.allowedRole == 'user') {
+        const user = await getUser(payload.email)
+        if (!user) {
+            return next(
+                new EndpointError("User with that email doesn't exist", 401)
+            )
+        }
+        user.password = null
+        req.user = user
+    } else if (req.allowedRole == 'company') {
+        const company = null
+        if (!company) {
+            return next(new EndpointError('Your credentials are invalid', 401))
+        }
+        req.user = company
+    }
+    next()
+}

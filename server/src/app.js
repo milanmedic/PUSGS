@@ -4,8 +4,13 @@ import { json, urlencoded } from 'body-parser'
 import cors from 'cors'
 import { PORT } from './config/dev'
 import { setup } from './services/utilities/database'
-import { login, register } from './controllers/authentication'
-import passport from 'passport'
+import {
+    login,
+    register,
+    protectUser,
+    protect,
+    protectCompanyAdmin,
+} from './controllers/authentication'
 
 export const app = express()
 
@@ -14,24 +19,24 @@ app.disable('x-powered-by')
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(passport.initialize())
 
 app.post('/login', login)
 app.post('/register', register)
-
-// app.use('/register', (err, req, res, next) => {
-//     console.log(err.stack)
-//     return res.status(400).send(err.message)
-// })
 
 app.get('/', async (req, res) => {
     res.send('Hello World')
 })
 
+app.get('/user-protected', protectUser, protect, (req, res) => {
+    res.send(req.user)
+})
+app.get('/company-protected', protectCompanyAdmin, protect, (req, res) => {
+    res.send(req.user)
+})
+
 app.use(function (err, req, res, next) {
     if (!err.statusCode) {
         res.status(500).send('Something broke!')
-        process.exit(1)
     }
     return res.status(err.statusCode).send(err.message)
 })
