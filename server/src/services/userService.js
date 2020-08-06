@@ -12,7 +12,7 @@ export async function checkIfExists(email) {
 export async function getUser(email) {
     return await User.findByPk(email)
 }
-
+// update with destructuring, pls
 export async function createUser(data) {
     const found = await checkIfExists(data.email)
     if (!found) {

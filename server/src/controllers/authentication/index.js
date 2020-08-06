@@ -3,9 +3,7 @@ import {
     validatePassword,
 } from '../../services/utilities/validations'
 import { checkIfExists, createUser, getUser } from '../../services/userService'
-import { SECRET } from '../../config/dev'
 import { EndpointError } from '../../models/Error'
-import jwt from 'jsonwebtoken'
 import {
     checkPassword,
     newToken,

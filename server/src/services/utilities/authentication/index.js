@@ -9,7 +9,7 @@ export async function hashPassword(password) {
 export async function checkPassword(password, hash) {
     return await bcrypt.compare(password, hash)
 }
-
+//update for destructuring
 export function newToken(user) {
     return jwt.sign({ email: user.email, role: user.role }, SECRET, {
         expiresIn: JWTEXP,
