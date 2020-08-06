@@ -20,12 +20,12 @@ export const User = sequelize.define('User', {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
         unique: true,
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
+        primaryKey: true,
         unique: true,
     },
     password: {
@@ -39,6 +39,11 @@ export const User = sequelize.define('User', {
     age: {
         type: DataTypes.INTEGER,
         allowNull: true,
+    },
+    accountConfirmed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
     },
     createdAt: {
         type: Sequelize.DATE,

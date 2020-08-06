@@ -16,25 +16,24 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(passport.initialize())
 
-//app.use('/login', login)
-app.post(
-    '/register',
-    passport.authenticate('signup', { failureRedirect: '/', session: false }),
-    register
-)
+app.post('/login', login)
+app.post('/register', register)
 
-app.use('/register', (err, req, res, next) => {
-    console.log(err.stack)
-    return res.status(400).send(err.message)
-})
+// app.use('/register', (err, req, res, next) => {
+//     console.log(err.stack)
+//     return res.status(400).send(err.message)
+// })
 
 app.get('/', async (req, res) => {
     res.send('Hello World')
 })
 
 app.use(function (err, req, res, next) {
-    res.status(500).send('Something broke!')
-    process.exit(1)
+    if (!err.statusCode) {
+        res.status(500).send('Something broke!')
+        process.exit(1)
+    }
+    return res.status(err.statusCode).send(err.message)
 })
 
 app.use((req, res) => {

@@ -1,5 +1,6 @@
 export const PORT = process.env.PORT || 3000
 export const SECRET = 'HOW BOUT THEM APPLES'
+export const JWTEXP = '10d'
 export const DATABASE = 'testdb'
 export const DB_USERNAME = 'mmedic'
 export const DB_PASS = 'milan.meda96'

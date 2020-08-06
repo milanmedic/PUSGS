@@ -1,16 +1,20 @@
 import { User } from '../models/User'
 import { hashPassword } from './utilities/authentication'
 
-export async function checkIfExists(username) {
-    let user = await User.findByPk(username)
+export async function checkIfExists(email) {
+    let user = await User.findByPk(email)
     if (user) {
         return true
     }
     return false
 }
 
+export async function getUser(email) {
+    return await User.findByPk(email)
+}
+
 export async function createUser(data) {
-    const found = await checkIfExists(data.username)
+    const found = await checkIfExists(data.email)
     if (!found) {
         try {
             const hash = await hashPassword(data.password)

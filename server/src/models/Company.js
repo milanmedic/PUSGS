@@ -8,12 +8,12 @@ export const Company = sequelize.define('Company', {
         allowNull: true,
         default: 'company',
     },
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-        allowNull: false,
-    },
+    // id: {
+    //     type: DataTypes.UUID,
+    //     defaultValue: Sequelize.UUIDV4,
+    //     primaryKey: true,
+    //     allowNull: false,
+    // },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,6 +21,8 @@ export const Company = sequelize.define('Company', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
+        primaryKey: true,
+        unique: true,
     },
     password: {
         type: DataTypes.STRING,
