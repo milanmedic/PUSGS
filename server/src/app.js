@@ -2,20 +2,11 @@
 import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import cors from 'cors'
-import { setup } from './services/utilities/database'
-import {
-    login,
-    register,
-    protectUser,
-    protect,
-    protectCompanyAdmin,
-} from './controllers/authentication'
-import {
-    sendGitHubOAuthRequest,
-    handleGitHubOAuthCallback,
-} from './controllers/oauth'
-import { confirmAccount } from './services/utilities/mailing'
 import dotenv from 'dotenv'
+import { setup } from './services/utilities/database'
+import userAuthenticationRoutes from './routes/userRoutes/authentication'
+import userRoutes from './routes/userRoutes/index'
+import companyRoutes from './routes/companyRoutes/index'
 
 export const app = express()
 dotenv.config()
@@ -26,24 +17,14 @@ app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 
-app.post('/login', login)
-app.post('/register', register)
+app.use('/', userAuthenticationRoutes)
+app.use('/user', userRoutes)
+app.use('/company', companyRoutes)
 
 app.get('/', async (req, res) => {
     res.send('Hello World')
 })
 
-app.get('/login/github', sendGitHubOAuthRequest)
-app.get('/login/github/callback', handleGitHubOAuthCallback)
-
-app.get('/user/confirm/:id', confirmAccount)
-
-app.get('/user-protected', protectUser, protect, (req, res) => {
-    res.send(req.user)
-})
-app.get('/company-protected', protectCompanyAdmin, protect, (req, res) => {
-    res.send(req.user)
-})
 app.use(function (err, req, res, next) {
     if (!err.statusCode) {
         res.status(500).send('Something broke!')
