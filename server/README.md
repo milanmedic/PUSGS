@@ -46,7 +46,32 @@ The Services are for business logic
     * /add-company
     * /delete-company
 
-# To-Do
+# Functionality To-Do
+
+## Authentication & Authorization
+
+-   (DONE) User Registration
+-   (DONE) User Login - Can't Login if Email Not Confirmed
+-   (DONE) Route Protection
+-   (DONE) OAuth Login - Can't Login if Email Not Confirmed
+-   Confirmation mail for confirming account registration
+-   Company Admin Profile Registration
+-   Company Admin Profile Login
+
+## User Functionality
+
+-   Edit Profile
+-   Find Friends
+-   Add Friends
+-   Remove Friends
+-   Accept Friend Requests
+
+### User Flight Functionality
+
+-   View Flight Services
+-   Reserve Flight
+-   Cancel Flight 3 Hours Before Due Time
+-   Rate Service
 
 ## Miscalenious
 
@@ -57,45 +82,6 @@ The Services are for business logic
 -   Add Subdomain for admins
 -   Add Request Validators (non-existing email, good field values, etc...)
 
-## API Functionalities:
-
--   Unregistered Users
-    -   Lookup flight information, free seats
-    -   Lookup rent-a-car information
--   Registered Users
-    -   User Registration (OAuth/Email/Password)
-    -   User Login/Logout
-    -   Search Friends
-    -   Add/Remove Friends
-    -   Reserve/Decline Airplane Tickets
-    -   Give a grade to the Air company
-    -   (later) Reserve/Decline Rent-a-car
-    -   (later) Give a grade to the Rent-a-car company
--   Admins
-    -   Airplane Admins
-        -   Define destinations
-        -   Add new flights for destinations
-        -   Adjust price tickets
-        -   Get reports of sold tickets
-        -   Get user ratings of their company
-        -   Get Income Reports
-        -   Edit Airplane Company Page
-    -   (later) Rent - a - car Admins
-        -   Define available vehlices
-        -   Adjust pricing
-        -   Get reports of free and taken vehlices for a given period
-        -   User rating
-        -   Get Income Reports
-        -   Edit Airplane Company Page
-    -   Super Admin
-        -   Register a new Rent-a-Car or Aviation company
-
-## Finalization
-
 ## Applying Migrations
 
 npx sequelize-cli db:migrate --url 'mysql://user:pass@localhost/dbname' --migrations-path "/home/mmedic/Programming/PUSGS/server/src/migrations"
-
-## Known Bugs
-
-    * checkIfUserExists returns null on first try even though user already exists in DB. The second time around it returns if the value actually exists (HAPPENS BECAUSE SYNC DROPS THE WHOLE TABLE IF IT EXISTS)
