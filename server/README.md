@@ -79,7 +79,7 @@ The Services are for business logic
 -   (IN PROGRESS) Add a logger (Morgan)
 -   (DONE) Write global error handler (404 for not found, 500 for critical errors, 400 for bad request (something went wrong, existing user, etc))
 -   (DONE) Try to set a check if database exists, if not, create it
--   (IN PROGRESS) Setup .env environment variable loading
+-   (DONE) Setup .env environment variable loading
 -   Add Subdomain for admins
 -   (IN PROGRESS) Add Request Validators (non-existing email, good field values, etc...)
 -   (IN PROGRESS) Refactor Routes in their respective route files
