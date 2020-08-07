@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/confirm/:id', confirmAccount)
 router.get('/protected', protectUser, protect, (req, res) => {
-    res.send(req.user)
+    return res.send(req.user)
 })
 
 export default router

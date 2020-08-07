@@ -8,7 +8,7 @@ import {
 const router = Router()
 
 router.get('/protected', protectCompanyAdmin, protect, (req, res) => {
-    res.send(req.user)
+    return res.send(req.user)
 })
 
 export default router

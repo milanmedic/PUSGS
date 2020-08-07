@@ -10,20 +10,28 @@ export async function checkPassword(password, hash) {
 }
 //update for destructuring
 export function newToken(user) {
-    return jwt.sign(
-        { email: user.email, role: user.role },
-        process.env.SECRET,
-        {
-            expiresIn: process.env.JWTEXP,
-        }
-    )
+    try {
+        return jwt.sign(
+            { email: user.email, role: user.role },
+            process.env.SECRET,
+            {
+                expiresIn: process.env.JWTEXP,
+            }
+        )
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
 
 export function verifyToken(token) {
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, process.env.SECRET, (err, payload) => {
-            if (err) return reject(err)
-            resolve(payload)
+    try {
+        return new Promise((resolve, reject) => {
+            jwt.verify(token, process.env.SECRET, (err, payload) => {
+                if (err) return reject(err)
+                resolve(payload)
+            })
         })
-    })
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }

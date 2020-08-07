@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 
 app.use(function (err, req, res, next) {
     if (!err.statusCode) {
-        res.status(500).send('Something broke!')
+        return res.status(500).send('Something broke!')
     }
     return res.status(err.statusCode).send(err.message)
 })

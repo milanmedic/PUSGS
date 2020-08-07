@@ -124,7 +124,12 @@ export const protect = async (req, res, next) => {
     try {
         payload = await verifyToken(token)
     } catch (err) {
-        return next(err)
+        return next(
+            new EndpointError(
+                'There was an error while verifying your token! ',
+                400
+            )
+        )
     }
     if (payload.role != req.allowedRole) {
         return next(new EndpointError('You are not authorized!', 401))
