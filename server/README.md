@@ -55,7 +55,7 @@ The Services are for business logic
 -   (DONE) Route Protection
 -   (DONE) OAuth Login
 -   (DONE) Confirmation mail for confirming account registration
--   Disallow Login if Account Not Confirmed
+-   (DONE) Disallow Login if Account Not Confirmed
 -   Company Admin Profile Registration
 -   Company Admin Profile Login
 
