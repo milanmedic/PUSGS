@@ -82,7 +82,7 @@ The Services are for business logic
 -   (DONE) Setup .env environment variable loading
 -   Add Subdomain for admins
 -   (IN PROGRESS) Add Request Validators (non-existing email, good field values, etc...)
--   (IN PROGRESS) Refactor Routes in their respective route files
+-   (DONE) Refactor Routes in their respective route files
 
 ## Applying Migrations
 
