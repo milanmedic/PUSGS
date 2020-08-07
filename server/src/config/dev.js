@@ -9,3 +9,7 @@ export const GITHUB = {
     CLIENT_ID: 'a3574089c323256c676f',
     CLIENT_SECRET: '8c8862146c35aabfc1e5e579b663e823bbbee6af',
 }
+export const CONFIRMATION_SERVICE = {
+    email: 'justfortesting996@gmail.com',
+    password: 'milanmeda96',
+}

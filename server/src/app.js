@@ -15,6 +15,7 @@ import {
     sendGitHubOAuthRequest,
     handleGitHubOAuthCallback,
 } from './controllers/oauth'
+import { confirmAccount } from './services/utilities/mailing'
 
 export const app = express()
 
@@ -33,6 +34,8 @@ app.get('/', async (req, res) => {
 
 app.get('/login/github', sendGitHubOAuthRequest)
 app.get('/login/github/callback', handleGitHubOAuthCallback)
+
+app.get('/user/confirm/:id', confirmAccount)
 
 app.get('/user-protected', protectUser, protect, (req, res) => {
     res.send(req.user)

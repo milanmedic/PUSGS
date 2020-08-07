@@ -12,6 +12,26 @@ export async function checkIfExists(email) {
 export async function getUser(email) {
     return await User.findByPk(email)
 }
+
+export async function getUserById(id) {
+    return await User.findOne({ where: { id: id } })
+}
+
+export async function getConfirmationStatus(email) {
+    const user = await User.findByPk(email)
+    return user.accountConfirmed
+}
+
+export async function updateById(id, field, value) {
+    return await User.update(
+        { [field]: value },
+        {
+            where: {
+                id: id,
+            },
+        }
+    )
+}
 // update with destructuring, pls
 export async function createUser(data) {
     const found = await checkIfExists(data.email)
@@ -30,6 +50,7 @@ export async function createUser(data) {
             })
             user.save()
             return {
+                id: user.id,
                 role: user.role,
                 name: user.name,
                 surname: user.surname,

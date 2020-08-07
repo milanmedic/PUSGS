@@ -2,6 +2,7 @@ import { GITHUB } from '../../config/dev'
 import { checkIfExists } from '../../services/userService'
 import { EndpointError } from '../../models/Error'
 import { newToken } from '../../services/utilities/authentication'
+import { getConfirmationStatus } from '../../services/userService'
 import axios from 'axios'
 
 async function getAccessToken(code, client_id, client_secret) {
@@ -56,6 +57,15 @@ export async function handleGitHubOAuthCallback(req, res, next) {
             new EndpointError(
                 "A user with the corresponding email doesn't exist!",
                 401
+            )
+        )
+    }
+    const accountConfirmed = await getConfirmationStatus(user.email)
+    if (!accountConfirmed) {
+        return next(
+            new EndpointError(
+                'Please Confirm your account before logging in!',
+                400
             )
         )
     }

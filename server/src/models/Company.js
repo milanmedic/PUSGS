@@ -3,17 +3,16 @@ import { sequelize } from '../services/utilities/database'
 import { Destination } from './Destination'
 
 export const Company = sequelize.define('Company', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+    },
     role: {
         type: DataTypes.STRING,
         allowNull: true,
         default: 'company',
     },
-    // id: {
-    //     type: DataTypes.UUID,
-    //     defaultValue: Sequelize.UUIDV4,
-    //     primaryKey: true,
-    //     allowNull: false,
-    // },
     name: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -4,10 +4,10 @@ import { Ticket } from './Ticket'
 import { Friendship } from './Friendship'
 
 export const User = sequelize.define('User', {
-    role: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        default: 'company',
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
     },
     name: {
         type: DataTypes.STRING,

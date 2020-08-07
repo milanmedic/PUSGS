@@ -51,10 +51,11 @@ The Services are for business logic
 ## Authentication & Authorization
 
 -   (DONE) User Registration
--   (DONE) User Login - Can't Login if Email Not Confirmed
+-   (DONE) User Login
 -   (DONE) Route Protection
--   (DONE) OAuth Login - Can't Login if Email Not Confirmed
--   Confirmation mail for confirming account registration
+-   (DONE) OAuth Login
+-   (DONE) Confirmation mail for confirming account registration
+-   Disallow Login if Account Not Confirmed
 -   Company Admin Profile Registration
 -   Company Admin Profile Login
 
@@ -81,6 +82,7 @@ The Services are for business logic
 -   Setup .env environment variable loading
 -   Add Subdomain for admins
 -   Add Request Validators (non-existing email, good field values, etc...)
+-   Refactor Routes in their respective route files
 
 ## Applying Migrations
 

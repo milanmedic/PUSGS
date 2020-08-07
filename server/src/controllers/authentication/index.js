@@ -2,13 +2,19 @@ import {
     validateEmail,
     validatePassword,
 } from '../../services/utilities/validations'
-import { checkIfExists, createUser, getUser } from '../../services/userService'
+import {
+    checkIfExists,
+    createUser,
+    getUser,
+    getConfirmationStatus,
+} from '../../services/userService'
 import { EndpointError } from '../../models/Error'
 import {
     checkPassword,
     newToken,
     verifyToken,
 } from '../../services/utilities/authentication'
+import { sendMail } from '../../services/utilities/mailing'
 
 export const register = async (req, res, next) => {
     //validate inputs
@@ -31,6 +37,17 @@ export const register = async (req, res, next) => {
                 )
             }
             //send email to confirm account
+            try {
+                //no need to block the main loop to wait for this
+                sendMail(user.email, user.id)
+            } catch (err) {
+                return next(
+                    new EndpointError(
+                        'There was an error while trying to send a confirmation email. Please try again',
+                        500
+                    )
+                )
+            }
             return res
                 .status(201)
                 .send({ message: 'User Registration Successfull' })
@@ -59,6 +76,15 @@ export const login = async (req, res, next) => {
             const match = await checkPassword(req.body.password, user.password)
             if (!match) {
                 return next(new EndpointError("Passwords don't match", 401))
+            }
+            const accountConfirmed = await getConfirmationStatus(user.email)
+            if (!accountConfirmed) {
+                return next(
+                    new EndpointError(
+                        'Please Confirm your account before logging in!',
+                        400
+                    )
+                )
             }
             //create jwt token
             const token = newToken(user)
