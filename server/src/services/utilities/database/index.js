@@ -1,13 +1,17 @@
 import { Sequelize } from 'sequelize'
-import { DATABASE, DB_USERNAME, DB_PASS, DB_HOST } from '../../../config/dev'
 import { checkConnection, checkIfDBExists, createDatabase } from './dbHelpers'
 
 const connect = () => {
-    const instance = new Sequelize(DATABASE, DB_USERNAME, DB_PASS, {
-        host: DB_HOST,
-        dialect: 'mysql',
-        logging: false,
-    })
+    const instance = new Sequelize(
+        process.env.DATABASE,
+        process.env.DB_USERNAME,
+        process.env.DB_PASS,
+        {
+            host: process.env.DB_HOST,
+            dialect: 'mysql',
+            logging: false,
+        }
+    )
     return instance
 }
 

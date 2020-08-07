@@ -55,9 +55,9 @@ The Services are for business logic
 -   (DONE) Route Protection
 -   (DONE) OAuth Login
 -   (DONE) Confirmation mail for confirming account registration
--   Disallow Login if Account Not Confirmed
--   Company Admin Profile Registration
--   Company Admin Profile Login
+-   (DONE) Disallow Login if Account Not Confirmed
+-   (IN PROGRESS) Company Admin Profile Registration
+-   (IN PROGRESS) Company Admin Profile Login
 
 ## User Functionality
 
@@ -76,13 +76,13 @@ The Services are for business logic
 
 ## Miscalenious
 
--   Add a logger (Morgan)
--   Write global error handler (404 for not found, 500 for critical errors, 400 for bad request (something went wrong, existing user, etc))
--   (!!!DONE!!!) Try to set a check if database exists, if not, create it
--   Setup .env environment variable loading
+-   (IN PROGRESS) Add a logger (Morgan)
+-   (DONE) Write global error handler (404 for not found, 500 for critical errors, 400 for bad request (something went wrong, existing user, etc))
+-   (DONE) Try to set a check if database exists, if not, create it
+-   (IN PROGRESS) Setup .env environment variable loading
 -   Add Subdomain for admins
--   Add Request Validators (non-existing email, good field values, etc...)
--   Refactor Routes in their respective route files
+-   (IN PROGRESS) Add Request Validators (non-existing email, good field values, etc...)
+-   (IN PROGRESS) Refactor Routes in their respective route files
 
 ## Applying Migrations
 

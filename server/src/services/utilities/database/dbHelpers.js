@@ -1,10 +1,9 @@
-import { DATABASE, DB_USERNAME, DB_PASS, DB_HOST } from '../../../config/dev'
-const mysql = require('mysql2')
+import mysql from 'mysql2'
 
 const connection = mysql.createConnection({
-    host: DB_HOST,
-    user: DB_USERNAME,
-    password: DB_PASS,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASS,
 })
 
 export async function checkConnection() {
@@ -25,7 +24,7 @@ export async function checkConnection() {
 export async function checkIfDBExists() {
     return new Promise((resolve, reject) => {
         connection.query(
-            `SHOW DATABASES LIKE "${DATABASE}";`,
+            `SHOW DATABASES LIKE "${process.env.DATABASE}";`,
             (err, result) => {
                 if (err) {
                     console.error(
@@ -34,7 +33,7 @@ export async function checkIfDBExists() {
                     reject(false)
                 } else {
                     if (result.length != 0) {
-                        console.log(`${DATABASE} already exists!`)
+                        console.log(`${process.env.DATABASE} already exists!`)
                         resolve(true)
                     } else {
                         resolve(false)
@@ -48,10 +47,12 @@ export async function checkIfDBExists() {
 export async function createDatabase() {
     return new Promise((resolve, reject) => {
         connection.query(
-            `CREATE DATABASE IF NOT EXISTS ${DATABASE};`,
+            `CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE};`,
             (err, result) => {
                 if (!err) {
-                    console.log(`Success! ${DATABASE} successfully created!`)
+                    console.log(
+                        `Success! ${process.env.DATABASE} successfully created!`
+                    )
                     resolve(true)
                 } else {
                     console.error(err)

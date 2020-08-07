@@ -1,12 +1,6 @@
 import nodemailer from 'nodemailer'
 import { EndpointError } from '../../../models/Error'
-import { CONFIRMATION_SERVICE } from '../../../config/dev'
-import {
-    getUser,
-    getUserById,
-    updateById,
-    getConfirmationStatus,
-} from '../../userService'
+import { getUserById, updateById } from '../../userService'
 
 /** EMAIL CONFIRMATION WORKFLOW
  * Send mail to recipient
@@ -28,12 +22,12 @@ export async function sendMail(email, userId) {
         let transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: CONFIRMATION_SERVICE.email,
-                pass: CONFIRMATION_SERVICE.password,
+                user: process.env.CONFIRMATION_SERVICE_EMAIL,
+                pass: process.env.CONFIRMATION_SERVICE_PASSWORD,
             },
         })
         let info = await transporter.sendMail({
-            from: `"IDE MAIL 👻" <${CONFIRMATION_SERVICE.email}>`, // sender address
+            from: `"IDE MAIL 👻" <${process.env.CONFIRMATION_SERVICE_EMAIL}>`, // sender address
             to: email, // list of receivers
             subject: 'Account Confirmation', // Subject line
             text: `Please go to localhost:3000/user/confirm/${userId} to confirm your account.`, // plain text body

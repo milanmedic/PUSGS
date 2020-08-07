@@ -1,4 +1,3 @@
-import { GITHUB } from '../../config/dev'
 import { checkIfExists } from '../../services/userService'
 import { EndpointError } from '../../models/Error'
 import { newToken } from '../../services/utilities/authentication'
@@ -34,9 +33,8 @@ async function fetchGitHubUser(token) {
     }
 }
 export async function sendGitHubOAuthRequest(req, res) {
-    const redirectURI = 'http://localhost:3000/login/github/callback'
-    res.redirect(
-        `https://github.com/login/oauth/authorize?client_id=${GITHUB.CLIENT_ID}&redirect_uri=${redirectURI}`
+    const redirectURI = res.redirect(
+        `https://github.com/login/oauth/authorize?client_id=${process.env.OAUTH_GITHUB_CLIENT_ID}&redirect_uri=${process.env.OAUTH_GITHUB_REDIRECTION_URI}`
     )
 }
 
@@ -44,8 +42,8 @@ export async function handleGitHubOAuthCallback(req, res, next) {
     const code = req.query.code
     const accessToken = await getAccessToken(
         code,
-        GITHUB.CLIENT_ID,
-        GITHUB.CLIENT_SECRET
+        process.env.OAUTH_GITHUB_CLIENT_ID,
+        process.env.OAUTH_GITUB_CLIENT_SECRET
     )
     //get user
     const user = await fetchGitHubUser(accessToken)

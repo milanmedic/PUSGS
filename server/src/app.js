@@ -2,7 +2,6 @@
 import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import cors from 'cors'
-import { PORT } from './config/dev'
 import { setup } from './services/utilities/database'
 import {
     login,
@@ -16,8 +15,10 @@ import {
     handleGitHubOAuthCallback,
 } from './controllers/oauth'
 import { confirmAccount } from './services/utilities/mailing'
+import dotenv from 'dotenv'
 
 export const app = express()
+dotenv.config()
 
 app.disable('x-powered-by')
 
@@ -56,10 +57,10 @@ app.use((req, res) => {
 })
 
 export const start = () => {
-    app.listen(PORT, async () => {
+    app.listen(process.env.PORT, async () => {
         try {
             console.log('Connection established successfully.')
-            console.log(`Server listening on port ${PORT}`)
+            console.log(`Server listening on port ${process.env.PORT}`)
             await setup()
         } catch (err) {
             console.error('There was an error while establishing a connection.')
