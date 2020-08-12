@@ -1,5 +1,7 @@
 import { User } from '../../models/User'
+import { UserDto } from '../../models/UserDto'
 import { hashPassword } from '../utilities/authentication'
+import { Op } from 'sequelize'
 
 export async function updateAllFields(
     id,
@@ -57,6 +59,18 @@ export async function getUserById(id) {
 export async function getConfirmationStatus(email) {
     const user = await getUser(email)
     return user.accountConfirmed
+}
+
+export async function getUsersByUsername(username) {
+    return await User.findAll({
+        where: {
+            username: { [Op.like]: `%${username}%` },
+        },
+    })
+}
+
+export function formatUser(user) {
+    return new UserDto(user.id, user.username, user.email)
 }
 
 export async function updateById(id, field, value) {

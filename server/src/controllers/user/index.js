@@ -3,7 +3,12 @@ import {
     validateEmail,
     validatePassword,
 } from '../../services/utilities/validations'
-import { getUserById, updateAllFields } from '../../services/userService'
+import {
+    getUserById,
+    updateAllFields,
+    getUsersByUsername,
+    formatUser,
+} from '../../services/userService'
 import { EndpointError } from '../../models/Error'
 import winston from '../../services/utilities/logging'
 
@@ -46,4 +51,45 @@ export async function editProfile(req, res, next) {
     }
     //return updated data
     res.json({ user })
+}
+
+export async function findFriends(req, res, next) {
+    //get username from query, need to format the query because it returns the query params with included double quotes, like this "someUsername"
+    const username = req.query.username.replace(/['"]+/g, '')
+    if (!username) {
+        logger.info('Query parameter missing in find friends function!')
+        return next(new EndpointError('Query parameter missing!', 400))
+    }
+    //find all users that have that username or similar
+    let users = undefined
+    try {
+        users = await getUsersByUsername(username)
+    } catch (err) {
+        logger.error('Error while querying users in findFriends controller!')
+        return next(
+            new EndpointError(
+                'An error occured while searching for friends!',
+                500
+            )
+        )
+    }
+    try {
+        users = users.map((user) => formatUser(user))
+        users = users.filter((item) => item.id != req.params.id)
+    } catch (err) {
+        logger.error(
+            'There was an error in findFriends function while filtering data to return!'
+        )
+        return next(
+            new EndpointError(
+                'There was an error while searching for users',
+                500
+            )
+        )
+    }
+    if (users.length == 0) {
+        return res.status(404).send('No users with the corresponding username')
+    }
+    res.json({ users })
+    //return a list of users
 }
