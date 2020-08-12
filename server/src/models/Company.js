@@ -7,6 +7,7 @@ export const Company = sequelize.define('Company', {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
+        primaryKey: true,
     },
     role: {
         type: DataTypes.STRING,
@@ -20,7 +21,6 @@ export const Company = sequelize.define('Company', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
         unique: true,
     },
     password: {

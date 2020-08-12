@@ -2,12 +2,14 @@ import { Sequelize, DataTypes } from 'sequelize'
 import { sequelize } from '../services/utilities/database/index'
 import { Ticket } from './Ticket'
 import { Friendship } from './Friendship'
+import { Request } from './Request'
 
 export const User = sequelize.define('User', {
     id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
+        primaryKey: true,
     },
     name: {
         type: DataTypes.STRING,
@@ -25,7 +27,6 @@ export const User = sequelize.define('User', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
         unique: true,
     },
     password: {
@@ -59,10 +60,17 @@ export const User = sequelize.define('User', {
 })
 
 //one user has many friendships
-User.hasMany(Ticket, { foreignKey: 'userUsername' })
+User.hasMany(Ticket, { foreignKey: 'userId' })
+
 //one user has many tickets
 User.belongsToMany(User, {
     as: 'Friends',
     through: Friendship,
+    uniqueKey: 'custom_key',
+})
+
+User.belongsToMany(User, {
+    as: 'Requests',
+    through: Request,
     uniqueKey: 'custom_key',
 })

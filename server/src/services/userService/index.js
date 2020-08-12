@@ -39,7 +39,7 @@ export async function updatePassword(password, id) {
 }
 
 export async function checkIfExists(email) {
-    let user = await User.findByPk(email)
+    let user = await User.findOne({ where: { email: email } })
     if (user) {
         return true
     }
@@ -47,7 +47,7 @@ export async function checkIfExists(email) {
 }
 
 export async function getUser(email) {
-    return await User.findByPk(email)
+    return await User.findOne({ where: { email: email } })
 }
 
 export async function getUserById(id) {
@@ -55,7 +55,7 @@ export async function getUserById(id) {
 }
 
 export async function getConfirmationStatus(email) {
-    const user = await User.findByPk(email)
+    const user = await getUser(email)
     return user.accountConfirmed
 }
 

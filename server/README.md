@@ -61,7 +61,7 @@ The Services are for business logic
 
 ## User Functionality
 
--   Edit Profile
+-   (DONE) Edit Profile
 -   Find Friends
 -   Add Friends
 -   Remove Friends
