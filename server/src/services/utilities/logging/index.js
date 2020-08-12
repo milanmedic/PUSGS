@@ -18,7 +18,7 @@ winston.loggers.add('AuthController', {
     ),
     transports: [
         new winston.transports.Console({}),
-        new winston.transports.File({ filename: 'authController.log' }),
+        new winston.transports.File({ filename: 'logs/authController.log' }),
     ],
 })
 
