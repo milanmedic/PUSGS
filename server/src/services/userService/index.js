@@ -1,6 +1,43 @@
 import { User } from '../../models/User'
 import { hashPassword } from '../utilities/authentication'
 
+export async function updateAllFields(
+    id,
+    { email, password, name, surname, username, location, description, age }
+) {
+    try {
+        await updateById(id, 'email', email)
+        await updateById(id, 'name', name)
+        await updateById(id, 'surname', surname)
+        await updateById(id, 'username', username)
+        await updateById(id, 'location', location)
+        await updateById(id, 'description', description)
+        await updateById(id, 'age', age)
+        await updatePassword(password, id)
+        return await getUserById(id)
+    } catch (err) {
+        throw new Error('There was an error while updating the user.')
+    }
+}
+
+export async function updatePassword(password, id) {
+    try {
+        const passwordHash = await hashPassword(password)
+        await User.update(
+            { password: passwordHash },
+            {
+                where: {
+                    id: id,
+                },
+            }
+        )
+    } catch (err) {
+        throw new Error(
+            'There was an error while updating the password. ' + err.message
+        )
+    }
+}
+
 export async function checkIfExists(email) {
     let user = await User.findByPk(email)
     if (user) {

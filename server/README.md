@@ -76,7 +76,7 @@ The Services are for business logic
 
 ## Miscalenious
 
--   (IN PROGRESS) Add a logger (Morgan)
+-   (DONE) Add a logger (Morgan)
 -   (DONE) Write global error handler (404 for not found, 500 for critical errors, 400 for bad request (something went wrong, existing user, etc))
 -   (DONE) Try to set a check if database exists, if not, create it
 -   (DONE) Setup .env environment variable loading
