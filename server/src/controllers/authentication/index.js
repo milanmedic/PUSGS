@@ -8,7 +8,7 @@ import {
     getUser,
     getConfirmationStatus,
 } from '../../services/userService'
-import { EndpointError } from '../../models/Error'
+import { EndpointError } from '../../classes/Error'
 import {
     checkPassword,
     newToken,

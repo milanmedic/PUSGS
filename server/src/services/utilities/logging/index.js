@@ -30,7 +30,7 @@ winston.loggers.add('OAuthController', {
     ),
     transports: [
         new winston.transports.Console({}),
-        new winston.transports.File({ filename: 'oauthController.log' }),
+        new winston.transports.File({ filename: 'logs/oauthController.log' }),
     ],
 })
 
@@ -38,7 +38,7 @@ winston.loggers.add('UserController', {
     format: combine(label({ label: 'User Controller' }), timestamp(), myFormat),
     transports: [
         new winston.transports.Console({}),
-        new winston.transports.File({ filename: 'userController.log' }),
+        new winston.transports.File({ filename: 'logs/userController.log' }),
     ],
 })
 
@@ -50,7 +50,7 @@ winston.loggers.add('AdminController', {
     ),
     transports: [
         new winston.transports.Console({}),
-        new winston.transports.File({ filename: 'AdminController.log' }),
+        new winston.transports.File({ filename: 'logs/AdminController.log' }),
     ],
 })
 

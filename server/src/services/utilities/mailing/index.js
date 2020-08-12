@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { EndpointError } from '../../../models/Error'
+import { EndpointError } from '../../../classes/Error'
 import { getUserById, updateById } from '../../userService'
 
 /** EMAIL CONFIRMATION WORKFLOW

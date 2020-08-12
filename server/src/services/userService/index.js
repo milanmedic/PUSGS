@@ -1,5 +1,5 @@
 import { User } from '../../models/User'
-import { UserDto } from '../../models/UserDto'
+import { UserDto } from '../../classes/UserDto'
 import { hashPassword } from '../utilities/authentication'
 import { Op } from 'sequelize'
 

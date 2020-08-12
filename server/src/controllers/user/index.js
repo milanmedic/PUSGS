@@ -9,7 +9,7 @@ import {
     getUsersByUsername,
     formatUser,
 } from '../../services/userService'
-import { EndpointError } from '../../models/Error'
+import { EndpointError } from '../../classes/Error'
 import winston from '../../services/utilities/logging'
 
 const logger = winston.loggers.get('UserController')

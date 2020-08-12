@@ -1,5 +1,5 @@
 import { checkIfExists } from '../../services/userService'
-import { EndpointError } from '../../models/Error'
+import { EndpointError } from '../../classes/Error'
 import { newToken } from '../../services/utilities/authentication'
 import { getConfirmationStatus } from '../../services/userService'
 import axios from 'axios'
