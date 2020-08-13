@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { sequelize } from '../services/utilities/database'
 
-export const Request = sequelize.define('Request', {
+export const FriendRequest = sequelize.define('FriendRequest', {
     id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,

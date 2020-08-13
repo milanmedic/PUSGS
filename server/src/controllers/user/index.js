@@ -8,6 +8,8 @@ import {
     updateAllFields,
     getUsersByUsername,
     formatUser,
+    sendNewFriendRequest,
+    getIncomingFriendRequests,
 } from '../../services/userService'
 import { EndpointError } from '../../classes/Error'
 import winston from '../../services/utilities/logging'
@@ -92,4 +94,81 @@ export async function findFriends(req, res, next) {
     }
     res.json({ users })
     //return a list of users
+}
+
+export async function sendFriendRequest(req, res, next) {
+    let user1 = undefined,
+        user2 = undefined
+    try {
+        user1 = await getUserById(req.params.id)
+        user2 = await getUserById(req.body.id)
+    } catch (err) {
+        logger.error(
+            'Something went wrong while searching for users in sendFriendRequest function'
+        )
+        return next(
+            new EndpointError(
+                'Someting went wrong while trying to identify the user',
+                500
+            )
+        )
+    }
+    //check if both users exists
+    if (!user1 && !user2) {
+        logger.info("One of the users doesn't exist")
+        return next(
+            new EndpointError(
+                "The user you want to send the request to doesn't exist",
+                404
+            )
+        )
+    }
+    //if they do add a new request
+    let confirmation = undefined
+    try {
+        confirmation = await sendNewFriendRequest(user1, user2)
+    } catch (err) {
+        logger.error(err.message)
+        return next(new EndpointError(err.message, 500))
+    }
+    //if successfull return 200 ok
+    if (!confirmation) {
+        logger.info('There was an error while sending a request')
+        return next(
+            new EndpointError('There was an error while sending a request', 500)
+        )
+    }
+    res.send('Friend Request Sent!')
+}
+
+export async function getFriendRequests(req, res, next) {
+    let user = undefined
+    try {
+        user = await getUserById(req.params.id)
+    } catch (err) {
+        logger.error(
+            'There was an error while searching for a user in getFriendRequests ' +
+                err.message
+        )
+        return next(
+            new EndpointError(
+                'There was an error while fetching your incoming requests',
+                500
+            )
+        )
+    }
+    if (!user) {
+        logger.info("User doesn't exist in the database ")
+        return next(
+            new EndpointError("The user doesn't exist in the database", 404)
+        )
+    }
+    let requests = []
+    try {
+        requests = await getIncomingFriendRequests(req.params.id)
+    } catch (err) {}
+    if (requests.length == 0) {
+        return res.status(404).send('No incoming friend requests found.')
+    }
+    res.send(requests)
 }

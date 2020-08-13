@@ -2,6 +2,33 @@ import { User } from '../../models/User'
 import { UserDto } from '../../classes/UserDto'
 import { hashPassword } from '../utilities/authentication'
 import { Op } from 'sequelize'
+import { FriendRequest } from '../../models/FriendRequest'
+
+export async function getIncomingFriendRequests(id) {
+    try {
+        return await FriendRequest.findAll({
+            where: {
+                RequestId: id,
+            },
+        })
+    } catch (err) {
+        throw new Error(
+            'There was an error while trying to get friend requests' +
+                err.message
+        )
+    }
+}
+
+export async function sendNewFriendRequest(user1, user2) {
+    try {
+        return await user1.addRequest(user2)
+    } catch (err) {
+        throw new Error(
+            'There was an error while trying to form an association' +
+                err.message
+        )
+    }
+}
 
 export async function updateAllFields(
     id,

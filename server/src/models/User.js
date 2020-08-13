@@ -2,7 +2,7 @@ import { Sequelize, DataTypes } from 'sequelize'
 import { sequelize } from '../services/utilities/database/index'
 import { Ticket } from './Ticket'
 import { Friendship } from './Friendship'
-import { Request } from './Request'
+import { Request, FriendRequest } from './FriendRequest'
 
 export const User = sequelize.define('User', {
     id: {
@@ -60,17 +60,16 @@ export const User = sequelize.define('User', {
 })
 
 //one user has many friendships
-User.hasMany(Ticket, { foreignKey: 'userId' })
+User.hasMany(Ticket, { as: 'Tickets' }) //should add user_id to Ticket
 
 //one user has many tickets
 User.belongsToMany(User, {
     as: 'Friends',
     through: Friendship,
-    uniqueKey: 'custom_key',
 })
 
 User.belongsToMany(User, {
+    //should create a new Model called UserProject with the equivalent foreing keys user1Id user2Id
     as: 'Requests',
-    through: Request,
-    uniqueKey: 'custom_key',
+    through: FriendRequest,
 })
