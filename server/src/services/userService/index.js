@@ -2,15 +2,12 @@ import { User } from '../../models/User'
 import { UserDto } from '../../classes/UserDto'
 import { hashPassword } from '../utilities/authentication'
 import { Op } from 'sequelize'
-import { FriendRequest } from '../../models/FriendRequest'
+import { formatIncomingRequests } from '../friendRequestService'
 
-export async function getIncomingFriendRequests(id) {
+export async function getUsersIncomingFriendRequests(user) {
     try {
-        return await FriendRequest.findAll({
-            where: {
-                RequestId: id,
-            },
-        })
+        let requests = await user.getIncomingRequests()
+        return requests.map((request) => formatIncomingRequests(request))
     } catch (err) {
         throw new Error(
             'There was an error while trying to get friend requests' +
@@ -21,7 +18,7 @@ export async function getIncomingFriendRequests(id) {
 
 export async function sendNewFriendRequest(user1, user2) {
     try {
-        return await user1.addRequest(user2)
+        return await user1.addSentRequest(user2)
     } catch (err) {
         throw new Error(
             'There was an error while trying to form an association' +

@@ -9,7 +9,7 @@ import {
     getUsersByUsername,
     formatUser,
     sendNewFriendRequest,
-    getIncomingFriendRequests,
+    getUsersIncomingFriendRequests,
 } from '../../services/userService'
 import { EndpointError } from '../../classes/Error'
 import winston from '../../services/utilities/logging'
@@ -143,7 +143,7 @@ export async function sendFriendRequest(req, res, next) {
     res.send('Friend Request Sent!')
 }
 
-export async function getFriendRequests(req, res, next) {
+export async function getIncomingFriendRequests(req, res, next) {
     let user = undefined
     try {
         user = await getUserById(req.params.id)
@@ -167,7 +167,8 @@ export async function getFriendRequests(req, res, next) {
     }
     let requests = []
     try {
-        requests = await getIncomingFriendRequests(req.params.id)
+        requests = await getUsersIncomingFriendRequests(user)
+        //console.log(requests[0].FriendRequest)
     } catch (err) {}
     if (requests.length == 0) {
         return res.status(404).send('No incoming friend requests found.')

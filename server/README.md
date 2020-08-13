@@ -62,7 +62,9 @@ The Services are for business logic
 ## User Functionality
 
 -   (DONE) Edit Profile
--   Find Friends
+-   (DONE) Find Friends
+-   (DONE) Send Friend Request
+-   (DONE) Get Incoming Friend Requests
 -   Add Friends
 -   Remove Friends
 -   Accept Friend Requests
