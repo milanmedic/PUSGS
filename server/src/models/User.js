@@ -72,14 +72,14 @@ User.belongsToMany(User, {
     //should create a new Model called UserProject with the equivalent foreing keys user1Id user2Id
     as: 'SentRequests',
     through: FriendRequest,
-    foreignKey: 'user1Id',
-    otherKey: 'user2Id',
+    foreignKey: 'senderId',
+    otherKey: 'recipientId',
 })
 
 User.belongsToMany(User, {
     //should create a new Model called UserProject with the equivalent foreing keys user2Id user1Id
     as: 'IncomingRequests',
     through: FriendRequest,
-    foreignKey: 'user2Id',
-    otherKey: 'user1Id',
+    foreignKey: 'recipientId',
+    otherKey: 'senderId',
 })

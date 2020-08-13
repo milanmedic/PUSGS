@@ -1,7 +1,7 @@
 export class FriendRequestDto {
-    constructor(requestId, user1Id, user2Id) {
+    constructor(requestId, senderId, recipientId) {
         this.requestId = requestId
-        this.user1Id = user1Id
-        this.user2Id = user2Id
+        this.senderId = senderId
+        this.recipientId = recipientId
     }
 }
