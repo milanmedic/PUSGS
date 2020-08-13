@@ -13,6 +13,8 @@ import {
 } from '../../services/userService'
 import { EndpointError } from '../../classes/Error'
 import winston from '../../services/utilities/logging'
+import { User } from '../../models/User'
+import { FriendRequest } from '../../models/FriendRequest'
 
 const logger = winston.loggers.get('UserController')
 
