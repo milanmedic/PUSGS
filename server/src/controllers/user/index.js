@@ -10,11 +10,15 @@ import {
     formatUser,
     sendNewFriendRequest,
     getUsersIncomingFriendRequests,
+    userHasIncomingFriendRequest,
 } from '../../services/userService'
 import { EndpointError } from '../../classes/Error'
 import winston from '../../services/utilities/logging'
-import { User } from '../../models/User'
-import { FriendRequest } from '../../models/FriendRequest'
+import {
+    deleteFriendRequest,
+    getFriendRequest,
+} from '../../services/friendRequestService'
+import { addFriend } from '../../services/friendshipService'
 
 const logger = winston.loggers.get('UserController')
 
@@ -168,10 +172,83 @@ export async function getIncomingFriendRequests(req, res, next) {
     let requests = []
     try {
         requests = await getUsersIncomingFriendRequests(user)
-        //console.log(requests[0].FriendRequest)
-    } catch (err) {}
+    } catch (err) {
+        logger.error(err.message)
+        return next(new EndpointError(err.message, 500))
+    }
     if (requests.length == 0) {
         return res.status(404).send('No incoming friend requests found.')
     }
     res.send(requests)
+}
+
+export async function declineFriendRequest(req, res, next) {
+    let user = undefined
+    try {
+        user = await getUserById(req.params.id)
+    } catch (err) {
+        logger.info(
+            'There was an error while trying to find a user in declineFriendRequest'
+        )
+        return next(new EndpointError('User not found', 404))
+    }
+
+    const hasRequest = await userHasIncomingFriendRequest(
+        user,
+        req.params.requestId
+    )
+    if (hasRequest.length == 0) {
+        return next(
+            new EndpointError("User hasn't received that friend request!", 404)
+        )
+    }
+
+    try {
+        let friendRequest = await deleteFriendRequest(req.params.requestId)
+    } catch (err) {
+        logger.error(
+            'There was an error while deleting the request. ' + err.message
+        )
+        return next(
+            new EndpointError(
+                'There was an error while trying to delete the request',
+                500
+            )
+        )
+    }
+
+    res.status(204).send('Request declined.')
+}
+
+export async function acceptFriendRequest(req, res, next) {
+    //check if friendRequest exists
+    let friendRequest = undefined
+    try {
+        friendRequest = await getFriendRequest(req.params.requestId)
+        if (!friendRequest) {
+            logger.info("The friend request doesn't exist.")
+            return next(
+                new EndpointError("The friend request doesn't exist", 404)
+            )
+        }
+    } catch (err) {
+        logger.error('There was an error while checking for the friend request')
+        return next(
+            new EndpointError(
+                'There was an error while checking for the friend request',
+                500
+            )
+        )
+    }
+    try {
+        const user1 = await getUserById(friendRequest.senderId)
+        const user2 = await getUserById(friendRequest.recipientId)
+        //if exists delete the request and add a new friendship
+        await deleteFriendRequest(req.params.requestId)
+        await addFriend(user1, user2)
+    } catch (err) {
+        logger.error(err.message)
+        return next(new EndpointError(err.message, 500))
+    }
+    res.status(200).end()
 }

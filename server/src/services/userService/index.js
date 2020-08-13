@@ -4,6 +4,15 @@ import { hashPassword } from '../utilities/authentication'
 import { Op } from 'sequelize'
 import { formatIncomingRequests } from '../friendRequestService'
 
+export async function userHasIncomingFriendRequest(user, requestId) {
+    try {
+        let requests = await getUsersIncomingFriendRequests(user)
+        return requests.filter((request) => request.requestId == requestId)
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
 export async function getUsersIncomingFriendRequests(user) {
     try {
         let requests = await user.getIncomingRequests()

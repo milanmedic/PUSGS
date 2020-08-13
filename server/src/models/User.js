@@ -2,7 +2,7 @@ import { Sequelize, DataTypes } from 'sequelize'
 import { sequelize } from '../services/utilities/database/index'
 import { Ticket } from './Ticket'
 import { Friendship } from './Friendship'
-import { Request, FriendRequest } from './FriendRequest'
+import { FriendRequest } from './FriendRequest'
 
 export const User = sequelize.define('User', {
     id: {
@@ -59,13 +59,22 @@ export const User = sequelize.define('User', {
     },
 })
 
-//one user has many friendships
+//one user has many tickets
 User.hasMany(Ticket, { as: 'Tickets' }) //should add user_id to Ticket
 
-//one user has many tickets
+//one user has many friendships
 User.belongsToMany(User, {
     as: 'Friends',
     through: Friendship,
+    foreignKey: 'userId',
+    otherKey: 'friendId',
+})
+
+User.belongsToMany(User, {
+    as: 'IsFriendsWith',
+    through: Friendship,
+    foreignKey: 'friendId',
+    otherKey: 'userId',
 })
 
 User.belongsToMany(User, {

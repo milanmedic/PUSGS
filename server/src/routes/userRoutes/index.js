@@ -6,6 +6,8 @@ import {
     findFriends,
     sendFriendRequest,
     getIncomingFriendRequests,
+    declineFriendRequest,
+    acceptFriendRequest,
 } from '../../controllers/user'
 
 const router = Router()
@@ -20,6 +22,18 @@ router.get(
     protectUser,
     protect,
     getIncomingFriendRequests
+)
+router.delete(
+    '/:id/decline-request/:requestId',
+    protectUser,
+    protect,
+    declineFriendRequest
+)
+router.post(
+    '/:id/accept-request/:requestId',
+    protectUser,
+    protect,
+    acceptFriendRequest
 )
 router.get('/protected', protectUser, protect, (req, res) => {
     return res.send(req.user)

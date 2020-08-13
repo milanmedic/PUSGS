@@ -65,9 +65,10 @@ The Services are for business logic
 -   (DONE) Find Friends
 -   (DONE) Send Friend Request
 -   (DONE) Get Incoming Friend Requests
--   Add Friends
--   Remove Friends
--   Accept Friend Requests
+-   (DONE) Decline Incoming Friend Request
+-   (DONE) Accept Friend Requests
+-   (DONE) Add Friends
+-   (IN PROGRESS) Remove Friends
 
 ### User Flight Functionality
 
