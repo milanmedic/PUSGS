@@ -26,7 +26,7 @@ export async function setup() {
             }
         }
         await sequelize.authenticate()
-        await sequelize.sync({ force: true }) //if we want to work without migrations
+        //await sequelize.sync({ force: true }) //if we want to work without migrations
     } catch (err) {
         console.error(err)
     }

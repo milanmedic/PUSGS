@@ -71,13 +71,6 @@ User.belongsToMany(User, {
 })
 
 User.belongsToMany(User, {
-    as: 'IsFriendsWith',
-    through: Friendship,
-    foreignKey: 'friendId',
-    otherKey: 'userId',
-})
-
-User.belongsToMany(User, {
     //should create a new Model called UserProject with the equivalent foreing keys user1Id user2Id
     as: 'SentRequests',
     through: FriendRequest,

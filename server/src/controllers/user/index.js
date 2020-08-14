@@ -18,7 +18,11 @@ import {
     deleteFriendRequest,
     getFriendRequest,
 } from '../../services/friendRequestService'
-import { addFriend } from '../../services/friendshipService'
+import {
+    addFriend,
+    getFriendship,
+    deleteFriendship,
+} from '../../services/friendshipService'
 
 const logger = winston.loggers.get('UserController')
 
@@ -251,4 +255,40 @@ export async function acceptFriendRequest(req, res, next) {
         return next(new EndpointError(err.message, 500))
     }
     res.status(200).end()
+}
+
+export async function deleteFriend(req, res, next) {
+    //check if friendship exists
+    let friendship = undefined
+    try {
+        friendship = await getFriendship(req.params.id, req.params.friendId)
+    } catch (err) {
+        logger.info('There as an error while trying to find the friendship.')
+        return next(
+            new EndpointError(
+                'There was an error while trying to lookup your friendship with the user',
+                500
+            )
+        )
+    }
+    //if it does, delete it
+    if (!friendship) {
+        return next(
+            new EndpointError('The user is not in your friends list', 404)
+        )
+    }
+    try {
+        await deleteFriendship(friendship.id)
+    } catch (err) {
+        logger.error(
+            'There was an error while deliting a friend. ' + err.message
+        )
+        return next(
+            new EndpointError(
+                'There was an error while deleting your friend.',
+                500
+            )
+        )
+    }
+    res.status(204).end()
 }
